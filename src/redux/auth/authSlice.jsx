@@ -9,7 +9,11 @@ const initialState = {
 const AuthSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    resetDataAuth: (state) => {
+      return state;
+    },
+  },
   extraReducers: {},
 });
 
