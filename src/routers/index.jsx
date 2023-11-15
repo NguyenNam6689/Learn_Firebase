@@ -1,6 +1,6 @@
 import AboutPage from "../pages/about/page";
 import HomePage from "../pages/home/page";
-import LoginPage from "../pages/login/page";
+import AuthPage from "@/pages/auth";
 
 export default [
   {
@@ -13,6 +13,6 @@ export default [
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <AuthPage />,
   },
 ];

@@ -1,22 +1,29 @@
+//* LIB
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-//* REDUX
+//* IMPORT
 import AuthReducer from "./auth/authSlice";
-import { APP_NODE } from "@/common/constants";
+import { NODE_APP } from "@/common/constants";
 
 const middleware = [thunk];
 
-const shouldEnvironment = process.env.NODE_APP === APP_NODE.DEV;
-if (shouldEnvironment) {
+const checkLogDev = process.env.NODE_ENV === NODE_APP.DEV;
+
+if (checkLogDev) {
   middleware.push(logger);
 }
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   auth: AuthReducer,
 });
+
 const store = configureStore({
-  reducer: reducer,
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleware),
+  devTools: checkLogDev,
 });
+
 export default store;
