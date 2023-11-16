@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 //* IMPORT
 import { auth } from "@/common/configs/database/firebase";
 
-// Todo: Handle create account into firebase
+// Todo 1: Handle create account into firebase
 export const registerInitial = createAsyncThunk(
   "auth/register",
   async ({ email, password, displayName }) => {
@@ -31,7 +31,7 @@ export const registerInitial = createAsyncThunk(
     }
   }
 );
-// Todo1 : Handle login account into firebase
+// Todo 2 : Handle login account into firebase
 export const loginInitial = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {

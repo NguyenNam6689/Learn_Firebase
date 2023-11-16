@@ -17,6 +17,7 @@ const AuthSlice = createSlice({
     },
   },
   extraReducers: {
+    // Todo 1 : Register
     [registerInitial.pending]: (state, _) => {
       return { ...state, isLoading: true };
     },
@@ -24,6 +25,26 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false, authData: action.payload };
     },
     [registerInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+    // Todo 2 : Login
+    [loginInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [loginInitial.fulfilled]: (state, action) => {
+      return { ...state, isLoading: false, authData: action.payload };
+    },
+    [loginInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+    // Todo 3: Login Google
+    [loginGoogleInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [loginGoogleInitial.fulfilled]: (state, action) => {
+      return { ...state, isLoading: false, authData: action.payload };
+    },
+    [loginGoogleInitial.rejected]: (state, action) => {
       return { ...state, isLoading: false, error: action.payload };
     },
   },
