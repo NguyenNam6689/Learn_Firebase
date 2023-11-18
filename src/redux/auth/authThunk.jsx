@@ -71,3 +71,84 @@ export const loginGoogleInitial = createAsyncThunk(
     }
   }
 );
+// Todo 4: Handle login facebook account into firebase
+export const loginFacebookInitial = createAsyncThunk(
+  "auth/login/facebook",
+  async (_, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      const { user } = await auth.signInWithPopup(facebookAuthProvider);
+
+      showSuccessToast("Login Facebook Success");
+      // return all data user redux toolkit
+      return user;
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error("Error during registration:", error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+// Todo 5: Handle reset password account into firebase
+export const sendPasswordResetEmailInitial = createAsyncThunk(
+  "auth/reset/password",
+  async ({ email = "nguyentientai10@gmail.com" } = {}, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      auth.sendPasswordResetEmail(email);
+
+      showSuccessToast(`Link reset had send into gmail ${email}`);
+      // return all data user redux toolkit
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error("Error during registration:", error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+// Todo 6: Handle logout account into firebase
+export const logoutInitial = createAsyncThunk(
+  "auth/logout",
+  async (_ = {}, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      await auth.signOut();
+
+      showSuccessToast(`Logout success`);
+      // return all data user redux toolkit
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error("Error during registration:", error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+// Todo 7: Handle login github account into firebase
+export const loginGithubInitial = createAsyncThunk(
+  "auth/login/github",
+  async (_, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      const { user } = await auth.signInWithPopup(githubAuthProvider);
+
+      showSuccessToast("Login github Success");
+      // return all data user redux toolkit
+      return user;
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error("Error during registration:", error);
+      return rejectWithValue(error);
+    }
+  }
+);
