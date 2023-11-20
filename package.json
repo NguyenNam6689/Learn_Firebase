@@ -6,18 +6,33 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext .cjs,.mjs,.jsx,.cts,.mts --fix --ignore-path .gitignore && echo \"Tai Dev Check Eslint ✅\"",
-    "lint:fix": "eslint . --fix --ext .ts,.tsx",
-    "format": "prettier --write src/**/*.{ts,tsx}",
     "preview": "vite preview",
-    "prepare": "husky install",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "prepare": "chmod +x .husky/pre-commit && chmod +x .husky/commit-msg && husky install",
     "pre-commit": "echo \"[Husky] pre-commit\"",
     "lint-staged": "lint-staged",
     "deploy-surge": "sh ./deploy-surge.sh"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "npm run lint",
+      "npm run format"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "firebase": "^10.6.0",
+    "husky": "^8.0.3",
     "lottie-react": "^2.4.0",
     "lottie-web": "^5.12.2",
     "react": "^18.2.0",
@@ -31,13 +46,17 @@
     "redux-thunk": "^2.4.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "eslint": "^8.45.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.1.0",
     "vite": "^4.4.5"
   }
 }
