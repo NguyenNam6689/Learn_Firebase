@@ -1,4 +1,4 @@
-export const APP_NODE = {
+export const NODE_APP = {
   DEV: "dev",
 };
 

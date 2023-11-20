@@ -6,15 +6,23 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint": "eslint . --ext .cjs,.mjs,.jsx,.cts,.mts --fix --ignore-path .gitignore && echo \"Tai Dev Check Eslint ✅\"",
+    "lint:fix": "eslint . --fix --ext .ts,.tsx",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "pre-commit": "echo \"[Husky] pre-commit\"",
+    "lint-staged": "lint-staged",
+    "deploy-surge": "sh ./deploy-surge.sh"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "firebase": "^10.6.0",
+    "lottie-react": "^2.4.0",
     "lottie-web": "^5.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.2",
     "react-redux": "^8.1.3",
     "react-router-dom": "^6.18.0",
     "react-toastify": "^9.1.3",

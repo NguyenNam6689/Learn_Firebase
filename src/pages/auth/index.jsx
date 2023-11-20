@@ -4,7 +4,7 @@ import React from "react";
 //* IMPORT
 import LoginPage from "./login/page";
 import RegisterPage from "./register/page";
-import Contents from "@/components/ContentsAuth";
+import Contents from "@/components/ContantsAuth";
 
 const AuthPage = () => {
   const [isChangePage, setIsChangePage] = React.useState(false);

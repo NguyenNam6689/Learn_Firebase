@@ -2,17 +2,27 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA2elrbqz0IkE6LeFObkKqHS_E-PGLQI0E",
-  authDomain: "create-test-firebase.firebaseapp.com",
-  projectId: "create-test-firebase",
-  storageBucket: "create-test-firebase.appspot.com",
-  messagingSenderId: "184942993904",
-  appId: "1:184942993904:web:d4dbd018c5d3bc0f7c7d35",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGE_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { auth, googleAuthProvider };
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+facebookAuthProvider.addScope("user_birthday");
+facebookAuthProvider.addScope("email");
+facebookAuthProvider.setCustomParameters({
+  display: "popup",
+});
+
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
+
+export { auth, googleAuthProvider, facebookAuthProvider, githubAuthProvider };

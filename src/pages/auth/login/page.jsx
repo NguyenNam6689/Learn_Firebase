@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 //* IMPORT
-import { createDefaultOptions } from "@/utils/AnimationUtils";
+import { createDefaultOptions } from "@/common/utils/AnimationUtils";
 import ButtonSocial from "@/components/Button/ButtonSocial";
 import * as google from "@/assets/jsons/google.json";
 import * as facebook from "@/assets/jsons/facebook.json";

@@ -1,6 +1,6 @@
 //* LIB
 import { createSlice } from "@reduxjs/toolkit";
-import { registerInitial } from "./authThunk";
+import { loginGoogleInitial, loginInitial, registerInitial } from "./authThunk";
 
 const initialState = {
   authData: null,
