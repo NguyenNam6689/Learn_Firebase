@@ -1,19 +1,16 @@
 //* LIB
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 //* IMPORT
-import { auth } from "@/common/configs/database/firebase";
+import { auth, facebookAuthProvider, googleAuthProvider } from '@/common/configs/database/firebase';
 
 // Todo 1: Handle create account into firebase
 export const registerInitial = createAsyncThunk(
-  "auth/register",
+  'auth/register',
   async ({ email, password, displayName }) => {
     try {
       // Create new account
-      const userCredential = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
       // If account create success, assign value into variable user
       const user = userCredential.user;
 
@@ -26,76 +23,76 @@ export const registerInitial = createAsyncThunk(
       return user;
     } catch (error) {
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return error;
     }
-  }
+  },
 );
 // Todo 2 : Handle login account into firebase
 export const loginInitial = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       // Login with email,password
       const { user } = await auth.signInWithEmailAndPassword(email, password);
 
-      showSuccessToast("Login Success");
+      showSuccessToast('Login Success');
       // return all data user redux toolkit
       return user;
     } catch (error) {
       // Info error
       showErrorToast(handleAuthError(error));
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return rejectWithValue(error);
     }
-  }
+  },
 );
 // Todo 3: Handle login google account into firebase
 export const loginGoogleInitial = createAsyncThunk(
-  "auth/login/google",
+  'auth/login/google',
   async (_, { rejectWithValue }) => {
     try {
       // Login with email,password
       const { user } = await auth.signInWithPopup(googleAuthProvider);
 
-      showSuccessToast("Login google Success");
+      showSuccessToast('Login google Success');
       // return all data user redux toolkit
       return user;
     } catch (error) {
       // Info error
       showErrorToast(handleAuthError(error));
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return rejectWithValue(error);
     }
-  }
+  },
 );
 // Todo 4: Handle login facebook account into firebase
 export const loginFacebookInitial = createAsyncThunk(
-  "auth/login/facebook",
+  'auth/login/facebook',
   async (_, { rejectWithValue }) => {
     try {
       // Login with email,password
       const { user } = await auth.signInWithPopup(facebookAuthProvider);
 
-      showSuccessToast("Login Facebook Success");
+      showSuccessToast('Login Facebook Success');
       // return all data user redux toolkit
       return user;
     } catch (error) {
       // Info error
       showErrorToast(handleAuthError(error));
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 // Todo 5: Handle reset password account into firebase
 export const sendPasswordResetEmailInitial = createAsyncThunk(
-  "auth/reset/password",
-  async ({ email = "nguyentientai10@gmail.com" } = {}, { rejectWithValue }) => {
+  'auth/reset/password',
+  async ({ email = 'nguyentientai10@gmail.com' } = {}, { rejectWithValue }) => {
     try {
       // Login with email,password
       auth.sendPasswordResetEmail(email);
@@ -106,15 +103,15 @@ export const sendPasswordResetEmailInitial = createAsyncThunk(
       // Info error
       showErrorToast(handleAuthError(error));
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 // Todo 6: Handle logout account into firebase
 export const logoutInitial = createAsyncThunk(
-  "auth/logout",
+  'auth/logout',
   async (_ = {}, { rejectWithValue }) => {
     try {
       // Login with email,password
@@ -126,29 +123,29 @@ export const logoutInitial = createAsyncThunk(
       // Info error
       showErrorToast(handleAuthError(error));
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 // Todo 7: Handle login github account into firebase
 export const loginGithubInitial = createAsyncThunk(
-  "auth/login/github",
+  'auth/login/github',
   async (_, { rejectWithValue }) => {
     try {
       // Login with email,password
       const { user } = await auth.signInWithPopup(githubAuthProvider);
 
-      showSuccessToast("Login github Success");
+      showSuccessToast('Login github Success');
       // return all data user redux toolkit
       return user;
     } catch (error) {
       // Info error
       showErrorToast(handleAuthError(error));
       // If error return error redux toolkit
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
       return rejectWithValue(error);
     }
-  }
+  },
 );
