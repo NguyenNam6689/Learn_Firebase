@@ -34,7 +34,7 @@ const Contents = ({ onChangePage }) => {
           <div className="content">
             <h3>Are you ready to go home website?</h3>
             <p>
-              Thank you was a visit company TaiHeo Dev Web, I wish you a good
+              Thank you was a visit company Nam Nung Ninh Dev Web, I wish you a good
               day,I love you so much
             </p>
             <Button
